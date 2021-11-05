@@ -11,8 +11,6 @@ module.exports.renderAddForm = function(req, res){
 };
 
 module.exports.addNewItem = async function(req, res){
-    const {sequelize} = require("../models/index");
-    const {QueryTypes} = require("sequelize");
     await sequelize.query('insert into todo (description) values (:description)', {
         type: QueryTypes.INSERT,
         replacements: {
@@ -23,8 +21,6 @@ module.exports.addNewItem = async function(req, res){
 }
 
 module.exports.markItemAsComplete = async function(req, res) {
-    const {sequelize} = require("../models/index");
-    const {QueryTypes} = require("sequelize");
     await sequelize.query('update todo set completed = true where id = :id', {
         type: QueryTypes.UPDATE,
         replacements: {
@@ -35,8 +31,6 @@ module.exports.markItemAsComplete = async function(req, res) {
 };
 
 module.exports.markItemAsIncomplete = async function(req, res) {
-    const {sequelize} = require("../models/index");
-    const {QueryTypes} = require("sequelize");
     await sequelize.query('update todo set completed = false where id = :id', {
         type: QueryTypes.UPDATE,
         replacements: {
@@ -47,8 +41,6 @@ module.exports.markItemAsIncomplete = async function(req, res) {
 };
 
 module.exports.deleteItem = async function(req, res) {
-    const {sequelize} = require("../models/index");
-    const {QueryTypes} = require("sequelize");
     await sequelize.query('delete from todo where id = :id', {
         type: QueryTypes.DELETE,
         replacements: {
@@ -59,8 +51,6 @@ module.exports.deleteItem = async function(req, res) {
 };
 
 module.exports.renderEditForm = async function(req, res) {
-    const {sequelize} = require("../models/index");
-    const {QueryTypes} = require("sequelize");
     await sequelize.query('select * from todo where id = :id', {
         type: QueryTypes.SELECT,
         replacements: {
@@ -72,8 +62,6 @@ module.exports.renderEditForm = async function(req, res) {
 };
 
 module.exports.updateItem = async function(req, res) {
-    const {sequelize} = require("../models/index");
-    const {QueryTypes} = require("sequelize");
     await sequelize.query('UPDATE todo set description = :description where id = :id', {
         type: QueryTypes.UPDATE,
         replacements: {
